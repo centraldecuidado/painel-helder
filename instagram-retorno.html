@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Conectando o Instagram…</title>
+    <style>
+      body { background: #012630; color: #cfe6e8; font-family: system-ui, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; }
+    </style>
+  </head>
+  <body>
+    <p>Conectando o Instagram…</p>
+    <script>
+      // Volta do login do Instagram: repassa o codigo para a tela de Configuracoes do painel.
+      var p = new URLSearchParams(window.location.search)
+      var destino = new URLSearchParams()
+      if (p.get('code')) destino.set('ig_code', p.get('code').replace(/#_?$/, ''))
+      if (p.get('state')) destino.set('ig_state', p.get('state'))
+      if (p.get('error')) destino.set('ig_erro', p.get('error_description') || p.get('error'))
+      window.location.replace('./#/config?' + destino.toString())
+    </script>
+  </body>
+</html>
